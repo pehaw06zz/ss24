@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let matrix = [];
+
+function inputMatrix(rows, cols) {
+    matrix = [];
+    for (let i = 0; i < rows; i++) {
+        let row = [];
+        for (let j = 0; j < cols; j++) {
+            row.push(parseInt(prompt(`Nhập phần tử matrix[${i}][${j}]:`), 10));
+        }
+        matrix.push(row);
+    }
+}
+
+function displayMatrix() {
+    console.log("Ma trận:");
+    matrix.forEach(row => console.log(row.join(" ")));
+}
+
+function sumMatrix() {
+    return matrix.flat().reduce((sum, num) => sum + num, 0);
+}
+
+function findMaxElement() {
+    let max = matrix[0][0];
+    let position = { row: 0, col: 0 };
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+                position = { row: i, col: j };
+            }
+        }
+    }
+    return { max, position };
+}
+
+function averageOfRow(rowIndex) {
+    if (rowIndex < 0 || rowIndex >= matrix.length) {
+        return "Hàng không hợp lệ";
+    }
+    let row = matrix[rowIndex];
+    return row.reduce((sum, num) => sum + num, 0) / row.length;
+}
+
+function reverseRows() {
+    matrix = matrix.map(row => row.reverse());
+}
+
+function main() {
+    let running = true;
+    while (running) {
+        let choice = prompt("Chọn chức năng:\n1. Nhập mảng\n2. Hiển thị mảng\n3. Tính tổng\n4. Tìm phần tử lớn nhất\n5. Trung bình cộng hàng\n6. Đảo ngược hàng\n7. Thoát");
+        
+        switch (choice) {
+            case "1":
+                let rows = parseInt(prompt("Nhập số hàng: "), 10);
+                let cols = parseInt(prompt("Nhập số cột: "), 10);
+                inputMatrix(rows, cols);
+                break;
+            case "2":
+                displayMatrix();
+                break;
+            case "3":
+                console.log("Tổng các phần tử: ", sumMatrix());
+                break;
+            case "4":
+                let { max, position } = findMaxElement();
+                console.log(`Phần tử lớn nhất: ${max} tại [${position.row}][${position.col}]`);
+                break;
+            case "5":
+                let rowIndex = parseInt(prompt("Nhập chỉ số hàng: "), 10);
+                console.log("Trung bình cộng hàng: ", averageOfRow(rowIndex));
+                break;
+            case "6":
+                reverseRows();
+                console.log("Đã đảo ngược các hàng.");
+                break;
+            case "7":
+                running = false;
+                break;
+            default:
+                console.log("Lựa chọn không hợp lệ!");
+        }
+    }
+}
+
+main();
+
+    </script>
+</body>
+</html>

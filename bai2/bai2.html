@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [];
+        let choice;
+        do {
+            choice = parseInt(prompt(
+                "Chon mot chuc nang \n" +
+                "1.Nhap mang so nguyen \n" +
+                "2.Hien thi mang \n" +
+                "3.Tim cac phan tu chan le \n" +
+                "4.Tinh trung binh cong cua mang \n " +
+                "5.Xoa phan tu tai vi tri chi dinh \n" +
+                "6.Tim phan tu lon thu 2 trong mang \n" +
+                "7.Thoat."));
+            switch (choice) {
+                case 1:
+                    arr = [];
+                    let n = parseInt(prompt("Nhap sl phan tu: "));
+                    if (n > 0) {
+                        for (let i = 0; i < n; i++) {
+                            arr.push(parseInt(prompt("Nhap phan tuu thu" + (i + 1) + " ")));
+                        }
+                    } else {
+                        alert("So luong phan tu phai lon hon 0");
+                    }
+                    break;
+                case 2:
+                    alert("Mang hien tai la" + (arr.length > 0 ? arr.join(", ") : "Mang rong"));
+                    break;
+                case 3:
+                    let chan = [];
+                    let le = [];
+                    for (let i = 0; i < arr.length; i++) {
+                        if (arr[i] % 2 === 0) chan.push(arr[i]);
+                        else le.push(arr[i]);
+                    }
+                    alert("Số chẵn: " + even.join(", ") + "\nSố lẻ: " + odd.join(", "));
+                    break;
+                case 4:
+                    let sum = 0;
+                    for (let i = 0; i < arr.length; i++) {
+                        sum += arr[i];
+                    }
+                    alert("Trung binh cong" + (sum / arr.length));
+                    break;
+                case 5:
+                    let index = parseInt(prompt("Nhap vao vi tri phan tu muon xoa"));
+                    if (index >= 0 && index < arr.length) {
+                        arr.splice(index, 1);
+                        alert("Mang sau khi xoa" + arr.join(", "));
+
+                    } else {
+                        alert("Vi tri khong hop le");
+                    }
+                    break;
+                case 6:
+                    let max1 = -1;
+                    let max2 = -1;
+                    for (let i = 0; i < arr.length; i++) {
+                        if (arr[i] > max1) {
+                            max2 = max1;
+                            max1 = arr[i];
+                        } else if (arr[i] > max2 && arr[i] < max1) {
+                            max2 = arr[i];
+                        }
+                    }
+                    if (max2 === -1) {
+                        alert("Khong co phan tu nao lon thu 2");
+                    } else {
+                        alert(max2);
+                    }
+                    break;
+                    case 7: 
+                    alert("Thoat chuong trinh");
+                    break;
+                    default: 
+                    alert("Lua chon khong hop le vui lonh nhap tu 1-7");
+            }
+        } while ( choice !==7);
+    </script>
+</body>
+</html>

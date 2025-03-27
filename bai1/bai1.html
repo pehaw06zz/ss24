@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let Arr = [];
+        let choice;
+        do {
+            choice = parseInt(prompt(
+                "Chon mot chuc nang: \n" +
+                "1. Nhap mang: \n" +
+                "2. Hien thi mang: \n" +
+                "3. Tim phan tu lon nhat va nho nhat: \n" +
+                "4. Tinh tong cac phan tu: \n" +
+                "5. Tim so lan suat hien cua phan tu: \n" +
+                "6. Sap xep mang tang dan: \n" +
+                "7. Thoat chuong trinh."
+            ));
+            switch (choice) {
+                case 1:
+                    Arr = [];
+                    let n = parseInt(prompt("Nhap sl phan tu: "));
+                    if (n > 0) {
+                        for (let i = 0; i < n; i++) {
+                            Arr.push(parseInt(prompt("Nhap phan tuu thu" + (i + 1) + "")));
+                        }
+                    } else {
+                        alert("So luong phan tu phai lon hon 0");
+                    }
+                    break;
+                case 2:
+                    alert("Mang hien tai la: " + (Arr.length > 0 ? Arr.join(", ") : "Mang rong"));
+
+                    break;
+                case 3:
+                    if (Arr.length > 0) {
+                        let max = Math.max(...Arr);
+                        let min = Math.min(...Arr);
+                        alert(`Phan tu lon nhat la: ${max}`+ `Phan tu nho nhat la: ${min}`);
+                    } else {
+                        alert("Mang chua co du lieu");
+                    }
+                    break;
+                case 4:
+                    let sum = 0;
+                    for (let i = 0; i < Arr.length; i++) {
+                        sum += Arr[i];
+                        alert(`Tong cac phan tu trong mang la: ${sum}`);
+                    }
+                    break;
+                case 5:
+                    let x = parseInt(prompt("Nhap so can tim: "));
+                    let count = 0;
+                    for (let i = 0; i < Arr.length; i++) {
+                        if (Arr[i] === x) {
+                            count++;
+                        }
+                    }
+                    alert(`So ${x} xuat hien ${count} lan trong mang.`);
+                    break;
+                case 6:
+                    Arr.sort((a, b) => a - b);
+                    alert("Mang sau khi sap xep tang dan: ", Arr.join(", "));
+                    break;
+                case 7:
+                    alert(" Thoat chuong trinh..");
+                    break;
+                default:
+                    alert("Lua cho khong hop le vui long nhap tu 1-7");
+            }
+        } while (choice !== 7);
+    </script>
+</body>
+
+</html>

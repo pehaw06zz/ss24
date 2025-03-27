@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [];
+        let choice;
+        do {
+            choice = parseInt(prompt(
+                "Chon cac chuc nang \n" +
+                "1.Nhap vao mang so nguyen \n" +
+                "2.Hien thi mang \n" +
+                "3.Tim phan tu lon nhat va in ra \n" +
+                "4.Tong trung binh cong cac so duong trong mang \n" +
+                "5.Dao nguoc mang \n" +
+                "6.Kiem tra mang co doi xung khong \n" +
+                "7.Thoat chuong trinh."
+            ));
+            switch (choice) {
+                case 1:
+                    let arr = [];
+                    let n = parseInt(prompt("NHap sl phan tu: "));
+                    if (n > 0) {
+                        for (let i = 0; i < n; i++) {
+                            arr.push(parseInt(prompt("Nhap phan tu thu" + (i + 1) + "")));
+                        }
+                    } else {
+                        alert("So luong phan tu phai lon hon 0");
+                    }
+                    break;
+                case 2:
+                    alert("Mang hien tai la" + (arr.length > 0 ? arr.join(", ") : "Mang rong"));
+                    break;
+                case 3:
+                    if (arr.length > 0) {
+                        let max = arr[0];
+                        let index = 0;
+                        for (let i = 0; i < arr.length; i++) {
+                            if (arr[i] > max) {
+                                max = arr[i];
+                                index = i;
+                            }
+                        }
+                        alert("Phan tu thu nhat la" + (max) + " tai vi tri" + index);
+                    } else {
+                        alert("Mang rong");
+                    }
+                    break;
+                case 4:
+                    let sum = 0;
+                    let count = 0;
+                    for (let i = 0; i < arr.length; i++) {
+                        if (arr[i] > 0) {
+                            sum += arr[i];
+                            count++;
+                        }
+                    }
+                    if (count > 0) {
+                        alert("Tong cac so duong" + sum + " trung binh cong" + (sum / arr.length));
+                    } else {
+                        alert("Khong co so duong trong mang");
+                    }
+                    break;
+                case 5:
+                    if (arr.length > 0) {
+                        arr.reverse();
+                        alert("Manhg sau khi doi nguoc" + arr.join(", "));
+                    } else {
+                        alert("Mang rong");
+                    }
+                    break;
+                case 6:
+                    let isSymmetric = true;
+                    for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+                        if (arr[i] !== arr[arr.length - 1 - i]) {
+                            isSymmetric = false;
+                            break;
+                        }
+                    }
+                    alert(isSymmetric ? "Mảng đối xứng!" : "Mảng không đối xứng!");
+                    break;
+                case 7:
+                    alert("Thoat chuong trinh");
+                    break;
+                default:
+                    alert("Lua chon khong hop le. Vui lonh nhap tu 1-7");
+            }
+        } while (choice !== 7);
+    </script>
+</body>
+
+</html>
